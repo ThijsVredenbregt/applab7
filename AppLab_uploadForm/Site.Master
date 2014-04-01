@@ -1,0 +1,17 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="AppLab_uploadForm.Site1" %>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head runat="server">
+        <meta charset="utf-8" />
+        <title><%: Page.Title %></title>
+        <asp:ContentPlaceHolder ID="head" runat="server">
+        </asp:ContentPlaceHolder>
+    </head>
+    <body>
+        <div>
+            <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">        
+            </asp:ContentPlaceHolder>
+        </div>
+    </body>
+</html>
