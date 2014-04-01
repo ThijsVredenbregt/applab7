@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -45,26 +47,24 @@ namespace AppLab_uploadForm
                     UploadedFile uf = new UploadedFile(file_upload_control.PostedFile);
 
 
-                    string extention = Path.GetExtension(file_upload_control.PostedFile.FileName);
-
-
-                    if (file_upload_control.PostedFile.ContentType == "image/jpeg")
+                    foreach (PropertyInfo info in uf.GetType().GetProperties())
                     {
-                        if (file_upload_control.PostedFile.ContentLength < 102400)
-                        {
-                            string filename = Path.GetFileName(file_upload_control.FileName);
-                            file_upload_control.PostedFile.SaveAs(Server.MapPath("~/") + filename);
-                            upload_status_label.Text = "Upload status: File uploaded!";
-                        }
-                        else
-                            upload_status_label.Text = "Upload status: The file has to be less than 100 kb!";
+                        TableRow row = new TableRow();
+
+                        TableCell[] cells = new TableCell[] {new TableCell(),new TableCell(),new TableCell()};
+                        cells[0].Controls.Add(new LiteralControl(info.PropertyType.ToString()));
+                        cells[1].Controls.Add(new LiteralControl(info.Name));
+                        cells[2].Controls.Add(new LiteralControl(info.GetValue(uf).ToString()));
+                        row.Cells.AddRange(cells);
+                        
+                        file_upload_details_table.Rows.Add(row);
                     }
-                    else
-                        upload_status_label.Text = "Upload status: Only JPEG files are accepted!";
+
+                    status_label.Text = "Status: OK!";
                 }
                 catch (Exception ex)
                 {
-                    upload_status_label.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
+                    status_label.Text = "Status: The file could not be uploaded. The following error occured: " + ex.Message;
                 }
             }
         }

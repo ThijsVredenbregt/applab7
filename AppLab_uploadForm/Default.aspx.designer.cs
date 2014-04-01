@@ -40,13 +40,13 @@ namespace AppLab_uploadForm {
         protected global::System.Web.UI.WebControls.Button upload_button;
         
         /// <summary>
-        /// upload_status_label control.
+        /// status_label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label upload_status_label;
+        protected global::System.Web.UI.WebControls.Label status_label;
         
         /// <summary>
         /// Label1 control.

@@ -7,7 +7,7 @@
             <asp:FileUpload id="file_upload_control" runat="server" />
             <asp:Button runat="server" id="upload_button" text="Upload" onclick="upload_button_click" />
             <br /><br />
-            <asp:Label runat="server" id="upload_status_label" text="Upload status: " />
+            <asp:Label runat="server" id="status_label" text="Status: " />
             
 
         <div>
